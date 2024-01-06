@@ -77,7 +77,7 @@ public class BookServlet extends HttpServlet {
                     String author = req.getParameter("insertAuthor");
                     int number_of_pages = Integer.parseInt(req.getParameter("insertNumberOfPages"));
                     int publishing_house_id = Integer.parseInt(req.getParameter("insertPublishingHouseId"));
-                    int year_of_publishing = Integer.parseInt(req.getParameter("insertYeaOfPublishing"));
+                    int year_of_publishing = Integer.parseInt(req.getParameter("insertYearOfPublishing"));
                     if (checkParams(name, genre, author, String.valueOf(number_of_pages), String.valueOf(publishing_house_id), String.valueOf(year_of_publishing)) && checkBook(name) == null) {
                         List<Author> authors = authorService.findAllAuthors();
                         int count = 0;

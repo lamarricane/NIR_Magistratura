@@ -50,7 +50,7 @@
                 <th>Author Name</th>
                 <th>Book Name</th>
                 <th>Genre</th>
-                th>Number of Pages</th>
+                <th>Number of Pages</th>
                 <th>Publishing House id</th>
                 <th>Year of Publishing</th>
             </tr>

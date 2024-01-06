@@ -199,12 +199,12 @@
                         </div>
                         <div class ="form-group">
                             <label>Insert book:</label>
-                            <input type="text" name="insertName" class="text-field__input" placeholder="Name">
-                            <input list="listInsertAuthors" type="text" name="insertAuthor" id="insertAuthor" class="text-field__input" placeholder="Author">
-                            <input type="text" name="insertGenre" class="text-field__input" placeholder="Genre">
-                            <input type="text" name="insertNumberOfPages" class="text-field__input" placeholder="NumberOfPages">
-                            <input type="text" name="insertPublishingHouse" class="text-field__input" placeholder="PublishingHouse">
-                            <input type="text" name="insertYearOfPublishing" class="text-field__input" placeholder="YearOfPublishing">
+                            <input type="text" name="insertName" class="text-field__input" placeholder="name">
+                            <input list="listInsertAuthors" type="text" name="insertAuthor" id="insertAuthor" class="text-field__input" placeholder="author">
+                            <input type="text" name="insertGenre" class="text-field__input" placeholder="genre">
+                            <input type="text" name="insertNumberOfPages" class="text-field__input" placeholder="number of Pages">
+                            <input type="text" name="insertPublishingHouseId" class="text-field__input" placeholder="publishing house id">
+                            <input type="text" name="insertYearOfPublishing" class="text-field__input" placeholder="year of publishing">
                             <script>
 							    var input2 = document.getElementById("insertAuthor");
 								input2.oninput = function () {

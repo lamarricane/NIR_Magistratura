@@ -6,9 +6,6 @@ import org.hibernate.SessionFactory;
 import service.AuthorService;
 import service.BookService;
 import utils.HibernateSessionFactoryUtil;
-
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -41,9 +38,9 @@ public class Main {
         bookService.saveBook(thirdBook);
 
 
-       List<Author> authorList = authorService.findAllAuthors();
-        for (Author  author :  authorList) {
-            System.out.println( author.toString());
+        List<Author> authorList = authorService.findAllAuthors();
+        for (Author author : authorList) {
+            System.out.println(author.toString());
         }
 
         List<Book> bookList = bookService.findAllBooks();

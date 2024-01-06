@@ -4,13 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
 
 @Data
 @NoArgsConstructor
@@ -18,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "Author")
 public class Author {
-    @Id //генерация первичного ключа id таблицы
+    @Id
     @GeneratedValue(generator = "author_id_seq")
     @Column(name = "id")
     private int id;
@@ -34,8 +29,7 @@ public class Author {
         this.name = name;
         this.birth_date = birth_date;
         books = new ArrayList<>();
-}
-
+    }
 
     public List<Book> getBooks() {
         return books;
@@ -63,7 +57,7 @@ public class Author {
     }
 
     public String getBirthDate() {
-            return birth_date;
+        return birth_date;
     }
 
     public int getId() {

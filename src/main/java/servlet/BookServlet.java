@@ -23,7 +23,6 @@ public class BookServlet extends HttpServlet {
     private final SessionFactory sessionFactory = HibernateSessionFactoryUtil.getSessionFactory();
     private List<Book> books;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -35,7 +34,6 @@ public class BookServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -62,7 +60,7 @@ public class BookServlet extends HttpServlet {
                         String newNumberOfPages = req.getParameter("updateNumberOfPages");
                         String newPublishingHouseId = req.getParameter("updatePublishingHouseId");
                         String newYearOfPublishing = req.getParameter("updateYearOfPublishing");
-                        if (checkBook(book.getId(), newName, newGenre, newAuthor,newNumberOfPages, newPublishingHouseId, newYearOfPublishing)) {
+                        if (checkBook(book.getId(), newName, newGenre, newAuthor, newNumberOfPages, newPublishingHouseId, newYearOfPublishing)) {
                             book = service.findBookById(book.getId());
                             setNewParams(book, newName, newGenre, newAuthor, newNumberOfPages, newPublishingHouseId, newYearOfPublishing, authorService.findAllAuthors());
                             service.updateBook(book);
@@ -100,83 +98,80 @@ public class BookServlet extends HttpServlet {
                 }
                 resp.sendRedirect("/book");
             }
-        } catch(Exception exception){
-                getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
-                throw new RuntimeException(exception.getMessage());
-            }
+        } catch (Exception exception) {
+            getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
+            throw new RuntimeException(exception.getMessage());
         }
+    }
 
-        private void setNewParams (Book book, String newName, String newGenre, String newAuthor, String newNumberOfPages, String newPublishingHouseId, String newYearOfPublishing,  List<Author > authors){
-            for (Author author : authors) {
-                if (author.getName().equals(newAuthor)) {
-                    if (book.getAuthor() != author) {
-                        book.setAuthor(author);
-                        author.addBook(book);
-                        break;
-                    }
+    private void setNewParams(Book book, String newName, String newGenre, String newAuthor, String newNumberOfPages, String newPublishingHouseId, String newYearOfPublishing, List<Author> authors) {
+        for (Author author : authors) {
+            if (author.getName().equals(newAuthor)) {
+                if (book.getAuthor() != author) {
+                    book.setAuthor(author);
+                    author.addBook(book);
+                    break;
                 }
             }
-            if (!book.getName().equals(newName) && !newName.isEmpty()) {
-                book.setName(newName);
-            }
-            if (!book.getGenre().equals(newGenre) && !newGenre.isEmpty()) {
-                book.setGenre(newGenre);
-            }
+        }
+        if (!book.getName().equals(newName) && !newName.isEmpty()) {
+            book.setName(newName);
+        }
+        if (!book.getGenre().equals(newGenre) && !newGenre.isEmpty()) {
+            book.setGenre(newGenre);
+        }
+        if (!Objects.equals(book.getNumberOfPages(), newNumberOfPages) && !(newNumberOfPages).isEmpty()) {
+            book.setNumberOfPages(Integer.parseInt(newNumberOfPages));
+        }
+        if (!Objects.equals(book.getPublishingHouseId(), newPublishingHouseId) && !(newPublishingHouseId).isEmpty()) {
+            book.setPublishingHouseId(Integer.parseInt(newPublishingHouseId));
+        }
+        if (!Objects.equals(book.getYearOfPublishing(), newYearOfPublishing) && !(newYearOfPublishing).isEmpty()) {
+            book.setYearOfPublishing(Integer.parseInt(newYearOfPublishing));
+        }
+    }
 
-            if (!Objects.equals(book.getNumberOfPages(), newNumberOfPages) && !(newNumberOfPages).isEmpty()) {
-                book.setNumberOfPages(Integer.parseInt(newNumberOfPages));
-            }
-           if (!Objects.equals(book.getPublishingHouseId(), newPublishingHouseId) && !(newPublishingHouseId).isEmpty()) {
-                book.setPublishingHouseId(Integer.parseInt(newPublishingHouseId));
-            }
-            if (!Objects.equals(book.getYearOfPublishing(), newYearOfPublishing) && !(newYearOfPublishing).isEmpty()) {
-                book.setYearOfPublishing(Integer.parseInt(newYearOfPublishing));
+    private boolean checkBook(int id, String newName, String newGenre, String newAuthor, String newNumberOfPages, String newPublishingHouseId, String newYeaOfPublishing) {
+        int count = 0;
+        for (Book book : books) {
+            if (book.getId() == id) {
+                if (book.getName().equals(newName)) {
+                    count++;
+                }
+                if (book.getGenre().equals(newGenre)) {
+                    count++;
+                }
+                if (book.getAuthor().getName().equals(newAuthor)) {
+                    count++;
+                }
+                if (Objects.equals(book.getNumberOfPages(), newNumberOfPages)) {
+                    count++;
+                }
+
+                if (Objects.equals(book.getPublishingHouseId(), newPublishingHouseId)) {
+                    count++;
+                }
+                if (Objects.equals(book.getYearOfPublishing(), newYeaOfPublishing)) {
+                    count++;
+                }
             }
         }
+        return count != 6;
+    }
 
-        private boolean checkBook ( int id, String newName, String newGenre, String newAuthor, String newNumberOfPages, String newPublishingHouseId, String newYeaOfPublishing) {
-            int count = 0;
-            for (Book book : books) {
-                if (book.getId() == id) {
-                    if (book.getName().equals(newName)) {
-                        count++;
-                    }
-                    if (book.getGenre().equals(newGenre)) {
-                        count++;
-                    }
-                    if (book.getAuthor().getName().equals(newAuthor)) {
-                        count++;
-                    }
-                    if (Objects.equals(book.getNumberOfPages(), newNumberOfPages)) {
-                        count++;
-                    }
-
-                    if (Objects.equals(book.getPublishingHouseId(), newPublishingHouseId)) {
-                            count++;
-                    }
-                    if (Objects.equals(book.getYearOfPublishing(), newYeaOfPublishing)) {
-                            count++;
-                    }
-
-
-                    }
-                }
-                return count != 6;
-            }
-
-            private Book checkBook (String name){
-                for (Book book : books) {
-                    if (book.getName().equals(name)) {
-                        return book;
-                    }
-                }
-                return null;
-            }
-
-            private boolean checkParams (String name, String genre, String author, String number_of_pages, String
-            publishing_house_id, String year_of_publishing){
-                return !name.isEmpty() && !genre.isEmpty() && !author.isEmpty() && !number_of_pages.isEmpty() && !publishing_house_id.isEmpty() && !year_of_publishing.isEmpty();
+    private Book checkBook(String name) {
+        for (Book book : books) {
+            if (book.getName().equals(name)) {
+                return book;
             }
         }
+        return null;
+    }
+
+    private boolean checkParams(String name, String genre, String author, String number_of_pages, String
+            publishing_house_id, String year_of_publishing) {
+        return !name.isEmpty() && !genre.isEmpty() && !author.isEmpty() && !number_of_pages.isEmpty() && !publishing_house_id.isEmpty() && !year_of_publishing.isEmpty();
+    }
+}
 
 

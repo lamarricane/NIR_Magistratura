@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class BookDaoImpl implements Dao<Book> {
-
     private final SessionFactory sessionFactory;
 
     public BookDaoImpl(SessionFactory sessionFactory) {
@@ -35,7 +34,7 @@ public class BookDaoImpl implements Dao<Book> {
 
     @Override
     public void update(Book book) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.update(book);
             transaction.commit();

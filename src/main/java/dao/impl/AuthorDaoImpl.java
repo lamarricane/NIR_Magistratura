@@ -7,7 +7,6 @@ import org.hibernate.*;
 import java.util.List;
 
 public class AuthorDaoImpl implements Dao<Author> {
-
     private final SessionFactory sessionFactory;
 
     public AuthorDaoImpl(SessionFactory sessionFactory) {

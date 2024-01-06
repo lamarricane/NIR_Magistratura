@@ -31,5 +31,4 @@ public class AuthorService {
     public List<Author> findAllAuthors() {
         return authorDao.findAll();
     }
-
 }

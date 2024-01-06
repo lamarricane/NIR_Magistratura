@@ -51,15 +51,15 @@ public class AuthorServlet extends HttpServlet {
                 if (!req.getParameter("updateName").isEmpty()) {
                     String updateName = req.getParameter("updateName");
                     String newName = req.getParameter("newName");
-                    String newBirthDate= req.getParameter("newBirthDate");
+                    String newBirthDate = req.getParameter("newBirthDate");
                     Author author = checkAuthor(updateName);
-                    if (author != null)  {
+                    if (author != null) {
                         author = service.findAuthorById(author.getId());
                         if (!newName.isEmpty()) {
                             author.setName(newName);
                             service.updateAuthor(author);
                         }
-                        if (!newBirthDate.isEmpty()){
+                        if (!newBirthDate.isEmpty()) {
                             author = service.findAuthorById(author.getId());
                             author.setBirthDate(newBirthDate);
                             service.updateAuthor(author);
@@ -68,7 +68,6 @@ public class AuthorServlet extends HttpServlet {
                         throw new RuntimeException("Неверные данные в поле для изменения автора книг!");
                     }
                 }
-
                 if (!req.getParameter("insertName").isEmpty()) {
                     String name = req.getParameter("insertName");
                     String birth_date = req.getParameter("insertBirthDate");

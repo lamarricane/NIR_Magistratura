@@ -13,5 +13,4 @@ public interface Dao<T> {
     void delete(T t);
 
     List<T> findAll();
-
 }

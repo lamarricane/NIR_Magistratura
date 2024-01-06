@@ -36,7 +36,7 @@ public class Book {
         this.genre = genre;
         this.number_of_pages = number_of_pages;
         this.publishing_house_id = publishing_house_id;
-        this.year_of_publishing =  year_of_publishing;
+        this.year_of_publishing = year_of_publishing;
     }
 
     public int getId() {
@@ -71,7 +71,7 @@ public class Book {
         this.author = author;
     }
 
-   public int getNumberOfPages() {
+    public int getNumberOfPages() {
         return number_of_pages;
     }
 
@@ -79,7 +79,7 @@ public class Book {
         this.number_of_pages = number_of_pages;
     }
 
-     public int getPublishingHouseId() {
+    public int getPublishingHouseId() {
         return publishing_house_id;
     }
 
@@ -96,7 +96,6 @@ public class Book {
     }
 
 
-
     @Override
     public String toString() {
         return "Book: " +
@@ -105,7 +104,5 @@ public class Book {
                 "\n Number of pages: " + number_of_pages +
                 "\n Publishing house id: " + publishing_house_id +
                 "\n Year of publishing: " + year_of_publishing;
-
-
     }
 }

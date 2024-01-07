@@ -107,11 +107,11 @@ public class BookServlet extends HttpServlet {
     private void setNewParams(Book book, String newName, String newGenre, String newAuthor, String newNumberOfPages, String newPublishingHouseId, String newYearOfPublishing, List<Author> authors) {
         for (Author author : authors) {
             if (author.getName().equals(newAuthor)) {
-                if (book.getAuthor() != author) {
+                //if (book.getAuthor() != author) {
                     book.setAuthor(author);
                     author.addBook(book);
-                    break;
-                }
+                  //break;
+                //}
             }
         }
         if (!book.getName().equals(newName) && !newName.isEmpty()) {

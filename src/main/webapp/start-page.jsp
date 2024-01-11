@@ -3,6 +3,8 @@
 <%@ page import="model.Book"%>
 <%@ page import="model.Author"%>
 <%@ page import="model.Publisher"%>
+<%@ page import="model.WebUser"%>
+<%@ page import="model.Review"%>
 
 <html>
 <form>
@@ -18,6 +20,8 @@
     List<Author> authors = (List) request.getAttribute("authors");
     List<Book> books = (List) request.getAttribute("books");
     List<Publisher> publishers = (List) request.getAttribute("publishers");
+    List<WebUser> webUsers = (List) request.getAttribute("webUsers");
+    List<Review> reviews = (List) request.getAttribute("reviews");
 %>
 <div class="container">
     <div class="row" align="center">
@@ -77,7 +81,7 @@
         </div>
     </div>
     <div class="row" align="center">
-            <table class="table_dark">
+         <table class="table_dark">
                 <thread>
                 <tr>
                     <th>ID Publisher</th>
@@ -99,7 +103,61 @@
                 <p>
                     <a href="publisher" class="button7">Change publishers</a>
                 </p>
-            </div>
+         </div>
+    </div>
+     <div class="row" align="center">
+                 <table class="table_dark">
+                     <thread>
+                     <tr>
+                         <th>ID Web User</th>
+                         <th>Name</th>
+                         <th>Registration Date</th>
+                     </tr>
+                     </thread>
+                     <body>
+                           <% for(WebUser webUser : webUsers) { %>
+                              <tr>
+                                 <td style="text-align:center"> <%= webUser.getId() %> </td>
+                                 <td style="text-align:center"> <%= webUser.getName() %> </td>
+                                 <td style="text-align:center"> <%= webUser.getRegistrationDate() %> </td>
+                              <tr>
+                           <% } %>
+                     </body>
+                 </table>
+                 <div class="buttons" style="text-align: center;">
+                     <p>
+                         <a href="webUser" class="button7">Change web users</a>
+                     </p>
+                 </div>
+     </div>
+    <div class="row" align="center">
+                <table class="table_dark">
+                    <thread>
+                    <tr>
+                        <th>ID Review</th>
+                        <th>Book</th>
+                        <th>Text</th>
+                        <th>Web User</th>
+                        <th>Publication Date</th>
+                    </tr>
+                    </thread>
+                    <body>
+                          <% for(Review review : reviews) { %>
+                             <tr>
+                                <td style="text-align:center"> <%= review.getId() %> </td>
+                                <td style="text-align:center"> <%= review.getBook().getName() %> </td>
+                                <td style="text-align:center"> <%= review.getText() %> </td>
+                                <td style="text-align:center"> <%= review.getWebUser().getName() %> </td>
+                                <td style="text-align:center"> <%= review.getPublicationDate() %> </td>
+                             <tr>
+                          <% } %>
+                    </body>
+                </table>
+                <div class="buttons" style="text-align: center;">
+                    <p>
+                        <a href="review" class="button7">Change reviews</a>
+                    </p>
+                </div>
     </div>
 </div>
 </body>

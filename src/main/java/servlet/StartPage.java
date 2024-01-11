@@ -25,9 +25,13 @@ public class StartPage extends HttpServlet {
         List<Author> authors = new AuthorService(new AuthorDaoImpl(sessionFactory)).findAllAuthors();
         List<Book> books = new BookService(new BookDaoImpl(sessionFactory)).findAllBooks();
         List<Publisher> publishers = new PublisherService(new PublisherDaoImpl(sessionFactory)).findAllPublishers();
+        List<WebUser> webUsers = new WebUserService(new WebUserDaoImpl(sessionFactory)).findAllWebUsers();
+        List<Review> reviews = new ReviewService(new ReviewDaoImpl(sessionFactory)).findAllReviews();
         req.setAttribute("books", books);
         req.setAttribute("authors", authors);
         req.setAttribute("publishers", publishers);
+        req.setAttribute("webUsers", webUsers);
+        req.setAttribute("reviews", reviews);
         getServletContext().getRequestDispatcher("/start-page.jsp").forward(req, resp);
         long endTime = System.currentTimeMillis();
         long SystemTime = endTime - startTime;

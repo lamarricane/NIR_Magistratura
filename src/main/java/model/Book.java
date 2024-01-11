@@ -1,11 +1,17 @@
 package model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Setter
+@Getter
+@Data
 @NoArgsConstructor
 @SequenceGenerator(name = "book_id_seq", sequenceName = "book_id_seq", allocationSize = 1)
 @Entity
@@ -41,11 +47,26 @@ public class Book {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
+    @Setter
+    @Getter
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Review> reviews;
+
     public Book(String name, String genre, int number_of_pages, int year_of_publishing) {
         this.name = name;
         this.genre = genre;
         this.number_of_pages = number_of_pages;
         this.year_of_publishing = year_of_publishing;
+        reviews = new ArrayList<>();
+    }
+
+    public void addReview(Review  review) {
+        review.setBook(this);
+        reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        reviews.remove(review);
     }
 
     public int getNumberOfPages() {

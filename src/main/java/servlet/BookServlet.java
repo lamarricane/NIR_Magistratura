@@ -48,6 +48,7 @@ public class BookServlet extends HttpServlet {
                     String deleteName = req.getParameter("deleteName");
                     Book book = checkBook(deleteName);
                     if (book != null) {
+                        book.setReviews(null);
                         service.deleteBook(book);
                     } else {
                         throw new RuntimeException("Неверные данные в поле для удаления книги!");

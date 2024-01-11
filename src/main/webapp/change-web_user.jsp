@@ -73,7 +73,7 @@
             }
             </style>
     </head>
-<body style="background-image: url('img.png');">
+<body style="background-image: url('change_author.jpg');">
 <%
     List<WebUser> webUsers = (List) request.getAttribute("webUsers");
 %>

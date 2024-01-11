@@ -179,7 +179,7 @@
                 }
             </script>
     </head>
-<body style="background-image: url('change_page.jpg');">
+<body style="background-image: url('change_book.jpg');">
 <%
     List<Book> books = (List) request.getAttribute("books");
 %>
@@ -220,7 +220,7 @@
                             <input type="text" name="deleteName" class="text-field__input" placeholder="name">
                         </div>
                         <div class ="form-group">
-                            <label>Update book with Name:</label>
+                            <label>Update book with name:</label>
                             <input type="text" name="updateName" class="text-field__input" placeholder="name">
                         </div>
                         <div class ="form-group">

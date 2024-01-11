@@ -51,7 +51,7 @@ public class AuthorServlet extends HttpServlet {
                         author.setBooks(null);
                         service.deleteAuthor(service.findAuthorById(author.getId()));
                     } else {
-                        throw new RuntimeException("Неверные данные в поле для удаления автора книг!");
+                        throw new RuntimeException("Данный автор отсутствует!");
                     }
                 }
                 if (!req.getParameter("updateName").isEmpty()) {

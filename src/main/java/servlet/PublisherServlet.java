@@ -54,7 +54,7 @@ public class PublisherServlet extends HttpServlet {
                         publisher.setBooks(null);
                         service.deletePublisher(service.findPublisherById(publisher.getId()));
                     } else {
-                        throw new RuntimeException("Неверные данные в поле для удаления автора книг!");
+                        throw new RuntimeException("Данный издатель отсутствует!");
                     }
                 }
                 if (!req.getParameter("updateName").isEmpty()) {
@@ -74,7 +74,7 @@ public class PublisherServlet extends HttpServlet {
                             service.updatePublisher(publisher);
                         }
                     } else {
-                        throw new RuntimeException("Неверные данные в поле для изменения автора книг!");
+                        throw new RuntimeException("Неверные данные в поле для изменения издателя книг!");
                     }
                 }
                 if (!req.getParameter("insertName").isEmpty()) {
@@ -83,7 +83,7 @@ public class PublisherServlet extends HttpServlet {
                     if (checkPublisher(name) == null && !name.isEmpty()) {
                         service.savePublisher(new Publisher(name, location));
                     } else {
-                        throw new RuntimeException("Неверные данные в поле для создания автора книг!");
+                        throw new RuntimeException("Неверные данные в поле для создания издателя книг!");
                     }
                 }
                 resp.sendRedirect("/publisher");

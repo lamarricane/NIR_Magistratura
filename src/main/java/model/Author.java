@@ -1,7 +1,9 @@
 package model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,15 +15,21 @@ import java.util.List;
 @Entity
 @Table(name = "Author")
 public class Author {
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(generator = "author_id_seq")
     @Column(name = "id")
     private int id;
+    @Setter
+    @Getter
     @Column(name = "name")
     private String name;
     @Column(name = "birth_date")
     private String birth_date;
 
+    @Setter
+    @Getter
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Book> books;
 
@@ -29,10 +37,6 @@ public class Author {
         this.name = name;
         this.birth_date = birth_date;
         books = new ArrayList<>();
-    }
-
-    public List<Book> getBooks() {
-        return books;
     }
 
     public void addBook(Book book) {
@@ -44,32 +48,12 @@ public class Author {
         books.remove(book);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setBirthDate(String birth_date) {
         this.birth_date = birth_date;
     }
 
     public String getBirthDate() {
         return birth_date;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 
     @Override

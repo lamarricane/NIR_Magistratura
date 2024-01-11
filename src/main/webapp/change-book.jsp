@@ -128,6 +128,56 @@
     				}
                 }
             </script>
+            <script>
+                var insertPublishersNames;
+                var updatePublishersNames;
+
+				function setInsertPublishers(input) {
+					let result = "";
+					getInsertNames(input);
+					for (var i = 0; i < insertPublishersNames.length; i++) {
+						result += "<option>" + insertPublishersNames[i] + "</option>";
+					}
+					document.getElementById("insertElements").innerHTML = result;
+				}
+
+                function getInsertNames(input) {
+                    if (input != "") {
+                	    $.ajax({
+                            type: "GET",
+                            url: "autofill?autofillPublishers=" + input,
+                            async: false,
+                            dataType: "json",
+                            success: function (data) {
+                                insertPublishersNames = data;
+                            }
+    				    });
+    				}
+                }
+
+				function setUpdatePublishers(input) {
+					let result = "";
+					getUpdateNames(input);
+					for (var i = 0; i < updatePublishersNames.length; i++) {
+						result += "<option>" + updatePublishersNames[i] + "</option>";
+					}
+					document.getElementById("updateElements").innerHTML = result;
+				}
+
+                function getUpdateNames(input) {
+                    if (input != "") {
+                	    $.ajax({
+                            type: "GET",
+                            url: "autofill?autofillPublishers=" + input,
+                            async: false,
+                            dataType: "json",
+                            success: function (data) {
+                                updatePublishersNames = data;
+                            }
+    				    });
+    				}
+                }
+            </script>
     </head>
 <body style="background-image: url('change_page.jpg');">
 <%
@@ -142,8 +192,8 @@
                         <th>Name</th>
                         <th>Genre</th>
                         <th>Author</th>
+                        <th>Publisher</th>
                         <th>Number of pages</th>
-                        <th>Publishing house id</th>
                         <th>Year of publishing</th>
                     </tr>
                 </thread>
@@ -154,10 +204,9 @@
                             <td style="text-align:center"> <%= book.getName() %> </td>
                             <td style="text-align:center"> <%= book.getGenre() %> </td>
                             <td style="text-align:center"> <%= book.getAuthor().getName() %> </td>
+                            <td style="text-align:center"> <%= book.getPublisher().getName() %> </td>
                             <td style="text-align:center"> <%= book.getNumberOfPages() %> </td>
-                            <td style="text-align:center"> <%= book.getPublishingHouseId() %> </td>
                             <td style="text-align:center"> <%= book.getYearOfPublishing() %> </td>
-
                         <tr>
                     <% } %>
                 </body>
@@ -177,15 +226,15 @@
                         <div class ="form-group">
                             <label>New name:</label>
                             <input type="text" name="newName" class="text-field__input" placeholder="new name">
-                             <label>New Author:</label>
-                             <input list="listUpdateAuthors" type="text" id="updateAuthor" name="updateAuthor" class="text-field__input" placeholder="new author">
-                            <label>New Genre:</label>
+                            <label>New genre:</label>
                             <input type="text" name="updateGenre" class="text-field__input" placeholder="new genre">
-                            <label>New Number of pages:</label>
+                            <label>New author:</label>
+                            <input list="listUpdateAuthors" type="text" id="updateAuthor" name="updateAuthor" class="text-field__input" placeholder="new author">
+                            <label>New publisher:</label>
+                            <input list="listUpdatePublishers" type="text" id="updatePublisher" name="updatePublisher" class="text-field__input" placeholder="new publisher">
+                            <label>New number of pages:</label>
                             <input type="text" name="updateNumberOfPages" class="text-field__input" placeholder="new number of pages">
-                            <label>New Publishing House Id:</label>
-                            <input type="text" name="updatePublishingHouseId" class="text-field__input" placeholder="new publishing house id">
-                            <label>New Year of Publishing:</label>
+                            <label>New year of publishing:</label>
                             <input type="text" name="updateYearOfPublishing" class="text-field__input" placeholder="new year of publishing">
                             <script>
 							    var input1 = document.getElementById("updateAuthor");
@@ -196,19 +245,32 @@
                             <datalist id="listUpdateAuthors">
                                 <div id="updateElements"></div>
                             </datalist>
+                            <script>
+							    var input1 = document.getElementById("updatePublisher");
+								input1.oninput = function () {
+								    setUpdatePublishers(input1.value);
+								}
+							</script>
+                            <datalist id="listUpdatePublishers">
+                                <div id="updateElements"></div>
+                            </datalist>
                         </div>
                         <div class ="form-group">
                             <label>Insert book:</label>
                             <input type="text" name="insertName" class="text-field__input" placeholder="name">
-                            <input list="listInsertAuthors" type="text" name="insertAuthor" id="insertAuthor" class="text-field__input" placeholder="author">
                             <input type="text" name="insertGenre" class="text-field__input" placeholder="genre">
+                            <input list="listInsertAuthors" type="text" name="insertAuthor" id="insertAuthor" class="text-field__input" placeholder="author">
+                            <input list="listInsertPublishers" type="text" name="insertPublisher" id="insertPublisher" class="text-field__input" placeholder="publisher">
                             <input type="text" name="insertNumberOfPages" class="text-field__input" placeholder="number of Pages">
-                            <input type="text" name="insertPublishingHouseId" class="text-field__input" placeholder="publishing house id">
                             <input type="text" name="insertYearOfPublishing" class="text-field__input" placeholder="year of publishing">
                             <script>
 							    var input2 = document.getElementById("insertAuthor");
 								input2.oninput = function () {
 								    setInsertAuthors(input2.value);
+								}
+                                var input2 = document.getElementById("insertPublisher");
+								input2.oninput = function () {
+								    setInsertPublishers(input2.value);
 								}
 							</script>
                             <datalist id="listInsertAuthors">

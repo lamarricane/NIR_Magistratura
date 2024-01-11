@@ -58,3 +58,5 @@ public class BookDaoImpl implements Dao<Book> {
         return (List<Book>) session.createQuery("From Book").list();
     }
 }
+
+

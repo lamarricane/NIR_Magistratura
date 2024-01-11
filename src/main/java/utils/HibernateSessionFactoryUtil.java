@@ -2,6 +2,7 @@ package utils;
 
 import model.Author;
 import model.Book;
+import model.Publisher;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -17,6 +18,7 @@ public class HibernateSessionFactoryUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Author.class);
+                configuration.addAnnotatedClass(Publisher.class);
                 configuration.addAnnotatedClass(Book.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());

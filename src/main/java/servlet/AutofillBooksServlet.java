@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/autofillAlbums")
+@WebServlet("/autofillBooks")
 public class AutofillBooksServlet extends HttpServlet {
     private final SessionFactory factory = HibernateSessionFactoryUtil.getSessionFactory();
 

@@ -3,6 +3,7 @@ package servlet;
 import dao.impl.AuthorDaoImpl;
 import model.Author;
 import org.hibernate.SessionFactory;
+
 import service.AuthorService;
 import utils.HibernateSessionFactoryUtil;
 
@@ -22,11 +23,16 @@ public class AuthorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long startTime = System.currentTimeMillis();
         try {
             AuthorService service = new AuthorService(new AuthorDaoImpl(sessionFactory));
             authors = service.findAllAuthors();
             req.setAttribute("authors", authors);
             getServletContext().getRequestDispatcher("/change-author.jsp").forward(req, resp);
+            long endTime = System.currentTimeMillis();
+            long AuthorTime = endTime - startTime;
+            System.out.println("Время выполнения метода: " + AuthorTime + " миллисекунд");
+
         } catch (IOException | ServletException e) {
             getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
             throw new RuntimeException(e.getMessage());

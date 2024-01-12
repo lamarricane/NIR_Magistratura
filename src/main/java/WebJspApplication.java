@@ -12,6 +12,8 @@ public class WebJspApplication {
         BookService bookService = new BookService(new BookDaoImpl(sessionFactory));
         AuthorService authorService = new AuthorService(new AuthorDaoImpl(sessionFactory));
         PublisherService publisherService = new PublisherService(new PublisherDaoImpl(sessionFactory));
+        WebUserService webUserService = new WebUserService(new WebUserDaoImpl(sessionFactory));
+        ReviewService reviewService = new ReviewService(new ReviewDaoImpl(sessionFactory));
 
         Author firstAuthor = new Author("Mary Stewart", "01.03.1933");
         Author secondAuthor = new Author("Sarah Gio", "30.04.1977");
@@ -27,6 +29,12 @@ public class WebJspApplication {
         Book fourthBook = new Book("Wolf River", "Detective", 450, 2013);
         Book fifthBook = new Book("Gloomy Bay", "Detective", 480, 2018);
 
+        WebUser firstWebUser = new WebUser("lamarricane", "23.07.2001");
+        WebUser secondWebUser = new WebUser("alisa_iskra", "28.09.2001");
+
+        Review firstReview = new Review("Very good", "15.02.2019");
+        Review secondReview = new Review("Interesting book", "15.02.2017");
+
         authorService.saveAuthor(firstAuthor);
         authorService.saveAuthor(secondAuthor);
         authorService.saveAuthor(thirdAuthor);
@@ -34,6 +42,9 @@ public class WebJspApplication {
         publisherService.savePublisher(firstPublisher);
         publisherService.savePublisher(secondPublisher);
         publisherService.savePublisher(thirdPublisher);
+
+        webUserService.saveWebUser(firstWebUser);
+        webUserService.saveWebUser(secondWebUser);
 
         firstBook.setAuthor(firstAuthor);
         secondBook.setAuthor(firstAuthor);
@@ -64,5 +75,29 @@ public class WebJspApplication {
         bookService.saveBook(thirdBook);
         bookService.saveBook(fourthBook);
         bookService.saveBook(fifthBook);
+
+        firstReview.setWebUser(firstWebUser);
+        secondReview.setWebUser(secondWebUser);
+
+        firstReview.setBook(thirdBook);
+        secondReview.setBook(fifthBook);
+
+        firstWebUser.addReview(firstReview);
+        secondWebUser.addReview(secondReview);
+
+        thirdBook.addReview(firstReview);
+        fifthBook.addReview(secondReview);
+
+        reviewService.saveReview(firstReview);
+        reviewService.saveReview(secondReview);
+
+        List<Author> authorList = authorService.findAllAuthors();
+        for (Author author : authorList) {
+            System.out.println(author.toString());
+        }
+        List<Book> bookList = bookService.findAllBooks();
+        for (Book book : bookList) {
+            System.out.println(book.toString());
+        }
     }
 }

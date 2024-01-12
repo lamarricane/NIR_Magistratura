@@ -108,16 +108,13 @@
                     <div class ="form-group">
                         <label>Update publisher with name:</label>
                         <input type="text" name="updateName" class="text-field__input" placeholder="name">
-                        <label>New name:</label>
                         <input type="text" name="newName" class="text-field__input" placeholder="new name">
-                        <label>New location:</label>
                         <input type="text" name="newLocation" class="text-field__input" placeholder="new location">
                     </div>
                     <div class ="form-group">
-                        <label class="text-field__label">Insert name:</label>
-                            <input type="text" name="insertName" class="text-field__input" placeholder="new name">
-                        <label class="text-field__label">Insert location:</label>
-                            <input type="text" name="insertLocation" class="text-field__input" placeholder="new location">
+                        <label class="text-field__label">Insert publisher:</label>
+                        <input type="text" name="insertName" class="text-field__input" placeholder="name">
+                         <input type="text" name="insertLocation" class="text-field__input" placeholder="location">
                     </div>
                     <p align="center">
                         <button a href="http://localhost:8080/" class="button7" type="submit" >Save changes</button>

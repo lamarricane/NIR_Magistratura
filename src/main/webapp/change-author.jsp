@@ -108,16 +108,13 @@
                     <div class ="form-group">
                         <label>Update author with name:</label>
                         <input type="text" name="updateName" class="text-field__input" placeholder="name">
-                        <label>New name:</label>
                         <input type="text" name="newName" class="text-field__input" placeholder="new name">
-                        <label>New birth date:</label>
                         <input type="text" name="newBirthDate" class="text-field__input" placeholder="new birth date">
                     </div>
                     <div class ="form-group">
-                        <label class="text-field__label">Insert name:</label>
-                            <input type="text" name="insertName" class="text-field__input" placeholder="new name">
-                        <label class="text-field__label">Insert birth date:</label>
-                            <input type="text" name="insertBirthDate" class="text-field__input" placeholder="new birth date">
+                        <label class="text-field__label">Insert author:</label>
+                            <input type="text" name="insertName" class="text-field__input" placeholder="name">
+                            <input type="text" name="insertBirthDate" class="text-field__input" placeholder="birth date">
                     </div>
                     <p align="center">
                         <button a href="http://localhost:8080/" class="button7" type="submit" >Save changes</button>

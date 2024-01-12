@@ -224,17 +224,12 @@
                             <input type="text" name="updateName" class="text-field__input" placeholder="name">
                         </div>
                         <div class ="form-group">
-                            <label>New name:</label>
+                            <label>New data:</label>
                             <input type="text" name="newName" class="text-field__input" placeholder="new name">
-                            <label>New genre:</label>
                             <input type="text" name="updateGenre" class="text-field__input" placeholder="new genre">
-                            <label>New author:</label>
                             <input list="listUpdateAuthors" type="text" id="updateAuthor" name="updateAuthor" class="text-field__input" placeholder="new author">
-                            <label>New publisher:</label>
                             <input list="listUpdatePublishers" type="text" id="updatePublisher" name="updatePublisher" class="text-field__input" placeholder="new publisher">
-                            <label>New number of pages:</label>
                             <input type="text" name="updateNumberOfPages" class="text-field__input" placeholder="new number of pages">
-                            <label>New year of publishing:</label>
                             <input type="text" name="updateYearOfPublishing" class="text-field__input" placeholder="new year of publishing">
                             <script>
 							    var input1 = document.getElementById("updateAuthor");
